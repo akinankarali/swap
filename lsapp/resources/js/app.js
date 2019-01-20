@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -21,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('RoomAndList', require('./components/RoomAndList.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +28,55 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('RoomList', {
+    props: {
+        roomList: {
+            type: Array,
+            required: true
+        }
+    },
+    template: `
+
+        <div>
+            @if(count($posts)   >   0)
+            @foreach($posts as $post)
+            <table class="table">
+            <thead>
+            <tr>
+            <th>İsim Soyisim</th>
+            <th>Oda Numarası</th>
+            <th>Masa Numarası</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+            <td>{{$post -> worker_name}}</td>
+            <td>{{$post -> room_id}}</td>
+            <td>{{$post -> table_id}}</td>
+            </tr>
+            </table>
+            @endforeach
+            @else
+            <p>No Workers Found</p>
+            @endif
+        </div>
+`
+
+});
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    name: 'RoomList',
+    data: {
+        x: '',
+        isLoggedIn: true
+    },
+    methods:{
+        callRoomOne(){
+
+        }
+    }
 });

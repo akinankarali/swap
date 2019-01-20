@@ -13,11 +13,8 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::get('/rooms', 'PagesController@rooms');
 
-Route::get('/workers', 'PagesController@workers');
-
-
-Route::resource('workers', 'PostController');
+Route::resource('workers', 'WorkerController');
 Route::resource('rooms', 'RoomController');
+Route::resource('tables', 'TableController');
 
